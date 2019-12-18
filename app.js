@@ -9,9 +9,13 @@ const cors = require ('cors')
 const helmet =require('helmet')
 // const logger = require ('morgan')
 const auth = require ('./Helpers/Middleware/auth')
-// const userRouter = require('./Routes/users')
-
 const app = express(); 
+// const userRouter = require('./Routes/users')
+var fileupload = require('express-fileupload')
+app.use(fileupload({
+    //setting tempfules jadi true
+    useTempFiles:true
+}))
 
 app.use(cors())
 app.use(bodyparser.json());
@@ -21,17 +25,37 @@ app.use('/', router);
 app.use(helmet.xssFilter())
 app.use(express.json())
 
-app.get('/test/test-airapi', (req, res) => {
-    airapi.getListingInfoHost({token: 'faketoken3sDdfvtF9if5398j0v5nui',
-    id: 109834757 }).then(result => {
-        res.json(result)
-    }).catch(err => console.log(err))
-    
 
+
+
+var cloudinary =require('cloudinary').v2
+cloudinary.config({
+    cloud_name:'kenzo',
+    api_key:'626316683862862',
+    api_secret:'JTDDl3ibdNwhlrRmdJnplA3TbRo'
+})
+
+app.post('/upload',function(req,res,next){
+    const file = req.files.photo
+    console.log(file)
+    //lalu pindahkan dari tempfile keserver cloudinary
+
+    cloudinary.uploader.upload(file.tempFilePath,function(err,result){
+        //parameter tempFiles seebagai location dariimana kita upload file,dan parameter callback
+        // console.log(err,'Error')
+        // console.log(result,'result')
+        res.send({
+            success:'true',
+            result
+        })
+    })    
 })
 
 
-app.listen (process.env.PORT|| 9000,()=> console.log('express is running',));
+
+
+
+app.listen (process.env.PORT|| 8200,()=> console.log('express is running',));
 
 // app.use ('/', auth.login, router);
 module.exports = app
