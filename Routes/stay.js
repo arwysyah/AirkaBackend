@@ -4,7 +4,8 @@ const stayController = require ('../Controllers/stay');
 const auth = require('../Helpers/Middleware/auth')
 
 Router.get('/',stayController.getAll);
-
+Router.get('/filter/stays/search/:location',stayController.filterLocation)
+Router.get('/limit',stayController.getLimit)
 // Router.get('/:id', bookController.getById)
 // Router.get('/status/:status',bookController.getByStatus);
 // Router.get('/search/genre/:genre',bookController.getByGenre);

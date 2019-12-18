@@ -11,6 +11,27 @@ module.exports = {
                 });
         })
     },
+    getLimit : ()=> { 
+        return new Promise((resolve,reject)=>{
+            db.query('SELECT * from stay limit  4 ',(error, status1)=>{
+                if (!error)
+                    resolve(status1,200)//mencobanya di console.log dulu
+                 else
+                   reject(error)
+                });
+        })
+    },
+
+filterLocation : (location)=> { 
+    return new Promise((resolve,reject)=>{
+        db.query("SELECT * FROM stay WHERE location LIKE CONCAT('%', ?,  '%')",[location],(error, status1)=>{
+            if (!error)
+                resolve(status1)//mencobanya di console.log dulu
+             else
+               reject(error)
+            });
+    })
+  },
     getByID : (id)=> { 
         return new Promise((resolve,reject)=>{
             db.query('SELECT * FROM db_book WHERE id = ?',[id],(error, status1)=>{

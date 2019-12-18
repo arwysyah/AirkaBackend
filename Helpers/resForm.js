@@ -26,6 +26,22 @@ module.exports = {
     };
     res.json(form);
   },
+  getLimit: (res, response, status) => {
+    const form = {
+      status,
+      response
+    };
+    res.json(form);
+  },
+  filterLocation: (res,response, location)=>{
+    const form = {
+        location,
+        response,
+    
+
+    };
+    res.json(form);
+  },
   getByStatus: (res, response, status) => {
     const form = {
       status,

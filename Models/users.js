@@ -3,8 +3,8 @@ const db = require("../Configs/db");
 module.exports = {
   register: (data, callBack) => {
     db.query(
-      `INSERT INTO user(username,email,password)values (?,?,?)`,
-      [data.username, data.email, data.password, data.level],
+      `INSERT INTO user(username,email,password,address)values (?,?,?,?)`,
+      [data.username, data.email, data.password, data.address],
       (error, results) => {
         if (error) {
           return callBack(error);
