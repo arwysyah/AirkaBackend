@@ -30,9 +30,9 @@ app.use(express.json())
 
 var cloudinary =require('cloudinary').v2
 cloudinary.config({
-    cloud_name:'kenzo',
-    api_key:'626316683862862',
-    api_secret:'JTDDl3ibdNwhlrRmdJnplA3TbRo'
+    cloud_name:process.env.CLOUDINARY,
+    api_key:process.env.API_CLOUDINARY,
+    api_secret:process.env.CLOUD_SECRET
 })
 
 app.post('/upload',function(req,res,next){
@@ -55,7 +55,7 @@ app.post('/upload',function(req,res,next){
 
 
 
-app.listen (process.env.PORT|| 8200,()=> console.log('express is running',));
+app.listen (process.env.PORT|| 9000,()=> console.log('express is running',));
 
 // app.use ('/', auth.login, router);
 module.exports = app

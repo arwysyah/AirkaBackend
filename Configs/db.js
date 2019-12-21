@@ -8,9 +8,11 @@ const db = mysql.createConnection({
     password : process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
     port: process.env.APP_PORT,
-    
+    cloud_name:process.env.CLOUDINARY,
+    api_key:process.env.API_CLOUDINARY,
+    api_secret:process.env.CLOUD_SECRET
 
-      // database: 'dbbooks'
+     
 });
 
 //connected statements

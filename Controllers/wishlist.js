@@ -13,9 +13,9 @@ module.exports = {
     
 },
 deleteWishlist : (req,res)=>{
-    const id_book = req.query.id_book
+    const id_room = req.query.id_room
     const id_user=req.query.id_user
-    Model.deleteWishlist(id_book,id_user)
+    Model.deleteWishlist(id_room,id_user)
     .then(id1=> form.deleteWishlist(res,id1,200))
     .catch(error=> console.log(error))
         }

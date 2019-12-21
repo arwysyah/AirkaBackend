@@ -15,7 +15,7 @@ module.exports = {
 
 getBooking :(id)=>{
     return new Promise((resolve,reject)=>{
-        db.query(`SELECT transaction.id_transaction, transaction.start_date, transaction.end_date ,user.name,stay.room_type,stay.image_url FROM transaction  JOIN stay  ON stay.id_room = transaction.id_room JOIN user  ON user.id_user = transaction.id_user WHERE transaction.id_user = ? `,[id], (err, result) => {
+        db.query(`SELECT transaction.id_transaction, transaction.start_date, transaction.end_date ,user.username,stay.room_type,stay.image_url FROM transaction  JOIN stay  ON stay.id_room = transaction.id_room JOIN user  ON user.id_user = transaction.id_user WHERE transaction.id_user = ? `,[id], (err, result) => {
             if(err){
                 reject(err)
             }else{
